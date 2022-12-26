@@ -1,0 +1,33 @@
+<form (ngSubmit)='submit()' [formGroup]='createPostForm' class='card'>
+	<h1>Create new post</h1>
+
+	<div [ngClass]='{invalid: createPostForm.controls["title"].touched && createPostForm.controls["title"].invalid}'
+	     class='form-control'>
+		<label for='title'>Post title</label>
+		<input formControlName='title' id='title' placeholder='Post title' type='text'>
+		<div *ngIf='createPostForm.controls["title"].touched && createPostForm.controls["title"].invalid'
+		     class='validation'>
+			<small *ngIf='createPostForm.controls["title"].errors?.["required"]'>This field is required!</small>
+		</div>
+	</div>
+
+	<div class='form-control'>
+		<label>Post Content</label>
+		<quill-editor formControlName='text'></quill-editor>
+	</div>
+
+	<div [ngClass]='{invalid: createPostForm.controls["author"].touched && createPostForm.controls["author"].invalid}'
+	     class='form-control'>
+		<label for='author'>Post author</label>
+		<input formControlName='author' id='author' placeholder='Post author' type='text'>
+		<div *ngIf='createPostForm.controls["author"].touched && createPostForm.controls["author"].invalid'
+		     class='validation'>
+			<small *ngIf='createPostForm.controls["author"].errors?.["required"]'>This field is required!</small>
+		</div>
+	</div>
+
+	<button
+			class='btn btn-block btn-dark'
+			type='submit'>Create post
+	</button>
+</form>
